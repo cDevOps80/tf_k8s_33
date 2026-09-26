@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.81.0"
+    }
+  }
+}
 resource "aws_scheduler_schedule" "scheduler" {
   name       = "lambda-schedule"
   group_name = "default"
@@ -6,7 +14,7 @@ resource "aws_scheduler_schedule" "scheduler" {
     mode = "OFF"
   }
 
-  schedule_expression          = "cron(0 11 * * ? *)"
+  schedule_expression          = "cron(* * * * ? *)"
   schedule_expression_timezone = "Asia/Kolkata"
 
   target {
@@ -48,3 +56,4 @@ resource "aws_iam_role_policy" "role_policy" {
     ]
   })
 }
+
