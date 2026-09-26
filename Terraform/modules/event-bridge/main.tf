@@ -20,6 +20,10 @@ resource "aws_scheduler_schedule" "scheduler" {
   target {
     arn      = var.arn
     role_arn = aws_iam_role.iam_role.arn
+    input = jsonencode({
+      "name": "chaithanya",
+      "action": "Automation"
+    })
   }
 }
 
